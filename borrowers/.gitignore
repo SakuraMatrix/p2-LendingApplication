@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+#Borrower config needs work
+BorrowersConfig.java
