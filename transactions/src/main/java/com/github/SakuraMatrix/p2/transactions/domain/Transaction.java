@@ -12,15 +12,15 @@ import java.util.UUID;
 public class Transaction {
 
     @PrimaryKeyColumn(name="id", type= PrimaryKeyType.PARTITIONED)
-    private UUID id;
+    private UUID id = UUID.randomUUID();
     private UUID lenderId;
     private UUID borrowerId;
-    private LocalDate startDate;
+    private LocalDate startDate = LocalDate.now();
     private int repaymentTerm; //loan duration in months 24 or 60 months
     private double amount;
     private double interestRate;
     private double monthlyPayment;
-    private LoanStatus status;
+    private LoanStatus status = LoanStatus.PROCESSED;
     // balance
     public enum LoanStatus {
         PROCESSED,
@@ -55,6 +55,9 @@ public class Transaction {
     }
 
 
+    public double calculatePayment(){
+        return this.amount *(( (this.interestRate/1200) * Math.pow((1 + (this.interestRate/1200)), this.repaymentTerm)) / ((Math.pow((1 +(this.interestRate/1200)), this.repaymentTerm)) - 1));
+    }
 
     public UUID getId() {
         return id;
@@ -119,6 +122,9 @@ public class Transaction {
     public void setMonthlyPayment(double monthlyPayment) {
         this.monthlyPayment = monthlyPayment;
     }
+//    public void setMonthlyPayment() {
+//        this.monthlyPayment = this.amount *(( (this.interestRate/1200) * Math.pow((1 + (this.interestRate/1200)), this.repaymentTerm)) / ((Math.pow((1 +(this.interestRate/1200)), this.repaymentTerm)) - 1));
+//    }
 
     public LoanStatus getStatus() {
         return status;
