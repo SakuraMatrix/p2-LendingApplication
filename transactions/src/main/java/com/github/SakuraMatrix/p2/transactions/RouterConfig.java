@@ -13,8 +13,7 @@ public class RouterConfig {
     @Bean
     public RouterFunction<ServerResponse> routes(TransactionController transactionController) {
         return route(GET("/transactions"), transactionController::getAll)
-                .andRoute(POST("/transactions"), transactionController::create);
-//                .andRoute(GET("/transactions/{id}"),transactionController::get);
-
+                .andRoute(POST("/transactions"), transactionController::create)
+                .andRoute(GET("/transactions/{id}"),transactionController::get);
     }
 }

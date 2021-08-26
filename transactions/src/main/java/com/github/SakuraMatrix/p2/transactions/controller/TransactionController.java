@@ -10,6 +10,7 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
+import java.util.UUID;
 
 @Component
 public class TransactionController {
@@ -19,16 +20,17 @@ public class TransactionController {
     public TransactionController(TransactionRepository transactionRepository){
         this.transactionRepository = transactionRepository;
     }
-
+    /* Method gets all transactions*/
     public Mono<ServerResponse> getAll(ServerRequest req) {
         return ServerResponse.ok().body(this.transactionRepository.findAll(), Transaction.class);
     }
-    //TODO: Fix get
-//    public Mono<ServerResponse> get(ServerRequest req) {
-//        return this.transactionRepository.findById(UUID.fromString(req.pathVariable("id")))
-//                .flatMap(transaction -> ServerResponse.ok().body(Mono.just(transaction),Transaction.class))
-//                .switchIfEmpty(ServerResponse.notFound().build());
-//    }
+    /* Method gets a single transaction */
+    public Mono<ServerResponse> get(ServerRequest req) {
+        return this.transactionRepository.findById(UUID.fromString(req.pathVariable("id")))
+                .flatMap(transaction -> ServerResponse.ok().body(Mono.just(transaction),Transaction.class))
+                .switchIfEmpty(ServerResponse.notFound().build());
+    }
+    /* Method creates a new transaction */
     public Mono<ServerResponse> create(ServerRequest req){
         logger.debug(req.toString());
         return req.bodyToMono(Transaction.class)
