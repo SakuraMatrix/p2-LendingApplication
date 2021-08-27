@@ -47,4 +47,13 @@ public class TransactionController {
                 .flatMap(transaction -> this.transactionRepository.save(transaction))
                 .flatMap(transaction -> ServerResponse.created(URI.create("/transactions/" + transaction.getId())).build());
     }
+    /* Method deletes a transaction */
+    public Mono<ServerResponse> delete(ServerRequest req) {
+            return this.transactionRepository.findById(UUID.fromString(req.pathVariable("id")))
+                .flatMap(transaction -> {
+                   return this.transactionRepository.delete(transaction)
+                           .then(ServerResponse.ok().build());
+                }).switchIfEmpty(ServerResponse.notFound().build());
+
+    }
 }
