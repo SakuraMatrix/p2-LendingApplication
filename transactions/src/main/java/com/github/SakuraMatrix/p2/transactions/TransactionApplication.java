@@ -12,6 +12,7 @@ public class TransactionApplication {
 	static Logger logger = LoggerFactory.getLogger(TransactionApplication.class);
 
 	public static void main(String[] args) {
+		logger.info("Starting application...");
 		SpringApplication.run(TransactionApplication.class, args);
 	}
 

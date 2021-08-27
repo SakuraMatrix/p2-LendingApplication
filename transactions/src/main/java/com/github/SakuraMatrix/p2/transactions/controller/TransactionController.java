@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.net.URI;
@@ -24,12 +25,21 @@ public class TransactionController {
     public Mono<ServerResponse> getAll(ServerRequest req) {
         return ServerResponse.ok().body(this.transactionRepository.findAll(), Transaction.class);
     }
-    /* Method gets a single transaction */
+    /* Method gets a single transaction using loan id */
     public Mono<ServerResponse> get(ServerRequest req) {
         return this.transactionRepository.findById(UUID.fromString(req.pathVariable("id")))
                 .flatMap(transaction -> ServerResponse.ok().body(Mono.just(transaction),Transaction.class))
                 .switchIfEmpty(ServerResponse.notFound().build());
     }
+    /* Method gets all transactions for a single lender */
+    public Mono<ServerResponse> getAllByLenderId(ServerRequest req) {
+        return ServerResponse.ok().body(this.transactionRepository.findAllByLenderId(UUID.fromString(req.pathVariable("id"))), Transaction.class);
+    }
+    /* Method gets all transactions for a single borrower */
+    public Mono<ServerResponse> getAllByBorrowerId(ServerRequest req) {
+        return ServerResponse.ok().body(this.transactionRepository.findAllByBorrowerId(UUID.fromString(req.pathVariable("id"))), Transaction.class);
+    }
+
     /* Method creates a new transaction */
     public Mono<ServerResponse> create(ServerRequest req){
         logger.debug(req.toString());
