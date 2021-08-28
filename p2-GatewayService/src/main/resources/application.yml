@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: gateway
+
+
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: demo
+#          uri: lb://lenderservice
+#          predicates:
+#            - Path=/**
