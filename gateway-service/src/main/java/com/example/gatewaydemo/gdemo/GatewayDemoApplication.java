@@ -26,7 +26,7 @@ public class GatewayDemoApplication {
 						.path("/lenders")
 						.uri("lb://lenders/lenders"))
 				.route( p -> p
-						.path("/transactions")
+						.path("/transactions/**")
 						.uri("lb://transactions/transactions"))
 				.route( p -> p
 						.path("/borrowers/borrowers-requests")
