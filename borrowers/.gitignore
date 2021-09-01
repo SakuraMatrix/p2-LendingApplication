@@ -34,3 +34,6 @@ build/
 
 #Borrower config needs work
 BorrowersConfig.java
+
+application.properties
+application.properties/
