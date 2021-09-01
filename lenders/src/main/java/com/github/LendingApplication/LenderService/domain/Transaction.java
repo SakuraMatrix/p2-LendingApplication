@@ -9,10 +9,10 @@ import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
-@Table("transactions")
+//@Table("transactions")
 public class Transaction {
 
-    @PrimaryKeyColumn(name="id", type= PrimaryKeyType.PARTITIONED)
+//    @PrimaryKeyColumn(name="id", type= PrimaryKeyType.PARTITIONED)
     private UUID id = UUID.randomUUID();
     private UUID lenderId;
     private UUID borrowerId;
