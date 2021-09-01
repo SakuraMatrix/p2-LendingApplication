@@ -20,6 +20,7 @@ public class RouterConfig {
         return route(GET("/borrowers"), borrowerController::getAll)
                 .andRoute(POST("/borrowers"), borrowerController::create)
                 .andRoute(GET("/borrowers/{id}"), borrowerController::get)
+                .andRoute(PUT("/borrowers/{id}"), borrowerController::update)
                 .andRoute(DELETE("/borrowers/{id}"),borrowerController::delete)
                 .andRoute(GET("/borrowers/borrowers-requests"), borrowerLoanRequestController::getAll)
                 .andRoute(POST("/borrowers/borrowers-requests"), borrowerLoanRequestController::create);

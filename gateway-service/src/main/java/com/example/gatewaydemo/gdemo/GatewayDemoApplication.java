@@ -20,10 +20,10 @@ public class GatewayDemoApplication {
 	public RouteLocator myRoutes(RouteLocatorBuilder builder){
 		return builder.routes()
 				.route( p -> p
-						.path("/borrowers")
+						.path("/borrowers/**")
 						.uri("lb://borrowers/borrowers"))
 				.route( p -> p
-						.path("/borrowers3")
+						.path("/borrowers3/**")
 						.uri("lb://borrowers3/borrowers3"))
 				.route( p -> p
 						.path("/lenders/**")
