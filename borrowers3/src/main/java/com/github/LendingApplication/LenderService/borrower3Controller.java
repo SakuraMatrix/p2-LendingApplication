@@ -14,10 +14,10 @@ import java.util.UUID;
 
 @Component
 @RestController
-public class LenderController {
+public class borrower3Controller {
     private LenderRepository lenderRepository;
 
-    public LenderController(LenderRepository lenderRepository) {
+    public borrower3Controller(LenderRepository lenderRepository) {
         this.lenderRepository = lenderRepository;
     }
 
@@ -37,7 +37,7 @@ public class LenderController {
     public Mono<ServerResponse> create(ServerRequest req) {
         return req.bodyToMono(Lender.class)
                 .flatMap(lender -> this.lenderRepository.save(lender))
-                .flatMap(lender -> ServerResponse.created(URI.create("/lenders/" + lender.getId())).build());
+                .flatMap(lender -> ServerResponse.created(URI.create("/borrowers3/" + lender.getId())).build());
     }
 
     /* Method deletes a transaction */

@@ -17,7 +17,7 @@ public interface LenderRepository extends ReactiveCassandraRepository<Lender, UU
      * @param id
      * @return
      */
-    @Query("SELECT * FROM lenders WHERE id =?0")
+    @Query("SELECT * FROM borrowers3 WHERE id =?0")
     Mono<Lender> findById(UUID id);
     /**
      * String query selecting one transaction
@@ -25,7 +25,7 @@ public interface LenderRepository extends ReactiveCassandraRepository<Lender, UU
      * @param id
      * @return
      */
-    @Query("SELECT * FROM lenders WHERE lenderid =?0 ALLOW FILTERING")
+    @Query("SELECT * FROM borrowers3 WHERE lenderid =?0 ALLOW FILTERING")
     Flux<Lender> findAllByLenderId(UUID id);
 
 

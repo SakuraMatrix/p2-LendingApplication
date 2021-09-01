@@ -14,6 +14,10 @@ public class RouterConfig {
     public RouterFunction<ServerResponse> routes(TransactionController transactionController) {
         return route(GET("/transactions"), transactionController::getAll)
                 .andRoute(POST("/transactions"), transactionController::create)
-                .andRoute(GET("/transactions/{id}"),transactionController::get);
+                .andRoute(GET("/transactions/{id}"),transactionController::get)
+                .andRoute(PUT("/transactions/{id}"), transactionController::update)
+                .andRoute(GET("/transactions/lender/{id}"),transactionController::getAllByLenderId)
+                .andRoute(GET("/transactions/borrower/{id}"),transactionController::getAllByBorrowerId)
+                .andRoute(DELETE("/transactions/{id}"),transactionController::delete);
     }
 }

@@ -1,4 +1,4 @@
-package com.github.LendingApplication.LenderService;
+package com.github.LendingApplication.BorrowerService;
 
 import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.Table;
@@ -6,8 +6,8 @@ import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import java.util.Objects;
 import java.util.UUID;
 
-@Table("lenders")
-public class Lender {
+@Table("borrowers2")
+public class Borrower {
     @PrimaryKeyColumn(name = "id", type = PrimaryKeyType.PARTITIONED)
     private UUID id = UUID.randomUUID();
     private String firstName;
@@ -16,10 +16,10 @@ public class Lender {
     private Integer taxId;
     private Double investmentLimit;
 
-    public Lender() {
+    public Borrower() {
     }
 
-    public Lender(String firstName, String lastName, String phoneNumber, Integer taxId, Double investmentLimit) {
+    public Borrower(String firstName, String lastName, String phoneNumber, Integer taxId, Double investmentLimit) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -77,8 +77,8 @@ public class Lender {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Lender lenders = (Lender) o;
-        return Objects.equals(id, lenders.id) && Objects.equals(firstName, lenders.firstName) && Objects.equals(lastName, lenders.lastName) && Objects.equals(phoneNumber, lenders.phoneNumber) && Objects.equals(taxId, lenders.taxId) && Objects.equals(investmentLimit, lenders.investmentLimit);
+        Borrower borrowers = (Borrower) o;
+        return Objects.equals(id, borrowers.id) && Objects.equals(firstName, borrowers.firstName) && Objects.equals(lastName, borrowers.lastName) && Objects.equals(phoneNumber, borrowers.phoneNumber) && Objects.equals(taxId, borrowers.taxId) && Objects.equals(investmentLimit, borrowers.investmentLimit);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class Lender {
 
     @Override
     public String toString() {
-        return "Lenders{" +
+        return "Borrowers2{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

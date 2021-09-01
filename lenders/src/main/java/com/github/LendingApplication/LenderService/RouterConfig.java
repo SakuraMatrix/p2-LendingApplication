@@ -1,4 +1,5 @@
 package com.github.LendingApplication.LenderService;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.server.RouterFunction;
@@ -16,6 +17,8 @@ public class RouterConfig {
 
         return route(GET("/lenders"), lenderController::all)
                 .andRoute(POST("/lenders"), lenderController::create)
-                .andRoute(GET("/lenders/{id}"), lenderController::get);
+                .andRoute(GET("/lenders/{id}"), lenderController::get)
+                .andRoute(PUT("/lenders/{id}"), lenderController::update)
+                .andRoute(DELETE("/lenders/{id}"),lenderController::delete);
     }
 }
