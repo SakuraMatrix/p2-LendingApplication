@@ -16,8 +16,8 @@ public class RouterConfig {
 
         return route(GET("/lenders"), lenderController::all)
                 .andRoute(POST("/lenders"), lenderController::create)
-                .andRoute(GET("/lenders/{id}"), lenderController::get)
-                .andRoute(GET("/lenders/transactions"),lenderController::getTransactions)
+//                .andRoute(GET("/lenders/{id}"), lenderController::get)
+//                .andRoute(GET("/lenders/transactions"),lenderController::getTransactions)
                 .andRoute(GET("/lenders/{id}/transactions"),lenderController::getTransactions);
     }
 }
