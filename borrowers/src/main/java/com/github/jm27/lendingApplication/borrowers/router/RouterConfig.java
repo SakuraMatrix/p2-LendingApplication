@@ -17,8 +17,13 @@ public class RouterConfig {
                                                  BorrowerLoanRequestController borrowerLoanRequestController)
     {
         return route(GET("/borrowers"), borrowerController::getAll)
-                .andRoute(POST("/borrowers"), borrowerController::create)
                 .andRoute(GET("/borrowers/borrowers-requests"), borrowerLoanRequestController::getAll)
-                .andRoute(POST("/borrowers/borrowers-requests"), borrowerLoanRequestController::create);
+                .andRoute(POST("/borrowers/borrowers-requests"), borrowerLoanRequestController::create)
+                .andRoute(GET("/borrowers/transactions"), borrowerController::getTransactions)
+                .andRoute(GET("/borrowers/{id}"), borrowerController::getByID)
+                .andRoute(POST("/borrowers"), borrowerController::create)
+                .andRoute(DELETE("/borrowers/{id}"), borrowerController::delete)
+                .andRoute(PUT("/borrowers/{id}"), borrowerController::update)
+                .andRoute(GET("/borrowers/{id}/transactions"), borrowerController::getTransactionsByID);
     }
 }
