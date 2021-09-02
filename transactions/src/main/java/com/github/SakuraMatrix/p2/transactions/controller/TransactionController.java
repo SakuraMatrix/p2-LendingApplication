@@ -69,6 +69,7 @@ public class TransactionController {
                 flatMap(update -> {
                             return transactionRepository.findById(update.getId()).flatMap(previous -> {
                                 previous.setStatus(update.getStatus()); //updates the status to the new status
+                                previous.setMonthlyPayment(previous.calculatePayment(previous.getInterestRate(),previous.getRepaymentTerm(),previous.getAmount()));
                                 return transactionRepository.save(previous)
                                         .flatMap(saved -> ServerResponse.ok().build());
                             });

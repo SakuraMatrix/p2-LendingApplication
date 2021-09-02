@@ -55,8 +55,8 @@ public class Transaction {
     }
 
 
-    public double calculatePayment(){
-        return this.amount *(( (this.interestRate/1200) * Math.pow((1 + (this.interestRate/1200)), this.repaymentTerm)) / ((Math.pow((1 +(this.interestRate/1200)), this.repaymentTerm)) - 1));
+    public double calculatePayment(double interestRate, int repaymentTerm, double amount){
+        return Math.round(amount *(( (interestRate/1200) * Math.pow((1 + (interestRate/1200)), repaymentTerm)) / ((Math.pow((1 +(interestRate/1200)), repaymentTerm)) - 1)));
     }
 
     public UUID getId() {
