@@ -20,17 +20,14 @@ public class GatewayDemoApplication {
 	public RouteLocator myRoutes(RouteLocatorBuilder builder){
 		return builder.routes()
 				.route( p -> p
-						.path("/borrowers")
+						.path("/borrowers/**")
 						.uri("lb://borrowers/borrowers"))
 				.route( p -> p
-						.path("/lenders")
+						.path("/lenders/**")
 						.uri("lb://lenders/lenders"))
 				.route( p -> p
 						.path("/transactions/**")
 						.uri("lb://transactions/transactions"))
-				.route( p -> p
-						.path("/borrowers/borrowers-requests")
-						.uri("lb://borrowers/borrowers/borrowers-requests"))
 				.build();
 	}
 
