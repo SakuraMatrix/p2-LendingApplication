@@ -15,5 +15,4 @@ public interface BorrowerRepository extends ReactiveCassandraRepository<Borrower
      */
     @Query("SELECT * FROM borrowers WHERE id =?0")
     Mono<Borrower> findById(UUID id);
-
 }

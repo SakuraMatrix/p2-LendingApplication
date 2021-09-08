@@ -36,7 +36,6 @@ public class BorrowerController {
                 .flatMap(borrower -> this.borrowerRepository.save(borrower))
                 .flatMap(borrower -> ServerResponse.created(URI.create("/borrowers/" + borrower.getId())).build());
     }
-
     // Get Borrower by ID
     public Mono<ServerResponse> getByID(ServerRequest req) {
         return this.borrowerRepository.findById(UUID.fromString(req.pathVariable("id")))
@@ -87,6 +86,5 @@ public class BorrowerController {
                 .bodyToFlux(Transaction.class)
                 ,Transaction.class).
                 switchIfEmpty(ServerResponse.notFound().build());
-
     }
 }
