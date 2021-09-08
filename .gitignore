@@ -23,3 +23,13 @@
 hs_err_pid*
 
 target/
+<<<<<<< HEAD
+
+.idea
+=======
+.idea/
+.DS_Store
+>>>>>>> olenka-transactions
+
+application.properties
+application.properties/
